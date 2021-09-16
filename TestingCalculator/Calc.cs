@@ -21,11 +21,26 @@ namespace TestingCalculator
             this.numberArr = numberArr;
         }
 
-        public void Addition()
+        public double Addition()
         {
             double sum = nr1 + nr2;
-            Console.WriteLine(sum);
+            return sum;
         }
+        public double Subtraction()
+        {
+            double dif = nr1 - nr2;
+            return dif;
+        }
+        public double Multiplication()
+        {
+            double prod = nr1 * nr2;
+            return prod;
+        } public double Division()
+        {
+            double quote = nr1 / nr2;
+            return quote;
+        }
+
 
         /*public static double[] Addition (double[] numberArr)
         {
