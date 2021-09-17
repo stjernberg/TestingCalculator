@@ -1,62 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+//using System.Collections.Generic;
+//using System.Text;
 
 namespace TestingCalculator
 {
     class Calc
     {
-        double nr1;
-        double nr2;
-        double[] numberArr = new double[5];
+        private decimal nr1;
+        public decimal nr2;
+        public decimal[] numberArray;
 
-        public Calc(double nr1, double nr2)
+
+
+        public Calc(decimal nr1, decimal nr2)
         {
             this.nr1 = nr1;
             this.nr2 = nr2;
         }
 
-        public Calc(double[] numberArr)
+        public Calc(decimal[] numberArray)
         {
-            this.numberArr = numberArr;
+            this.numberArray = numberArray;
+
         }
 
-        public double Addition()
+
+        public decimal Addition(decimal nr1, decimal nr2)
         {
-            double sum = nr1 + nr2;
+            decimal sum = nr1 + nr2;
             return sum;
         }
-        public double Subtraction()
+
+        public decimal Addition(decimal[] numberArray)
         {
-            double dif = nr1 - nr2;
+            decimal sum = 0;
+
+            for (int i = 0; i < numberArray.Length; i++)
+            {
+                sum += numberArray[i];
+            }
+            return sum;
+        }
+        public decimal Subtraction(decimal nr1, decimal nr2)
+        {
+            decimal dif = nr1 - nr2;
             return dif;
         }
-        public double Multiplication()
+
+        public decimal Subtraction(decimal[] numberArray)
         {
-            double prod = nr1 * nr2;
+
+            decimal dif = 0;
+
+            for (int i = 0; i < numberArray.Length; i++)
+            {
+                dif -= numberArray[i];
+            }
+            return dif;
+        }
+        public decimal Multiplication()
+        {
+            decimal prod = nr1 * nr2;
             return prod;
-        } public double Division()
-        {
-            double quote = nr1 / nr2;
-            return quote;
         }
 
-
-        /*public static double[] Addition (double[] numberArr)
+        public decimal Division()
         {
-            int sum;
-        AskUserForNr();
 
-            for (int i = 0; i <additionArr.Length; i++)
-            {
-               sum += additionArr[i];
-            }
-           return sum;
-        }//Addition 
-public static double AskUserForNr(double[] additionArr)
-{
-    return double[] }
- }*/
+            decimal quote = nr1 / nr2;
+
+           
+                try
+                {
+                    
+                    if (nr2 != 0)
+                    {
+                        return quote;
+                    }
+
+                }
+
+                catch (DivideByZeroException e)
+                { 
+                    Console.WriteLine(e.Message);
+                
+                }          
+
+        }
+
 
     }//Calc
 }//namespace
