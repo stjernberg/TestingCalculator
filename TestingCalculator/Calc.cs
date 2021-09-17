@@ -67,24 +67,19 @@ namespace TestingCalculator
         public decimal Division()
         {
 
-            decimal quote = nr1 / nr2;
+            decimal quote;
 
-           
-                try
-                {
-                    
-                    if (nr2 != 0)
-                    {
-                        return quote;
-                    }
 
-                }
+            if (nr2 != 0)
+            {
+                quote = nr1 / nr2;
+                return quote;
+            }
 
-                catch (DivideByZeroException e)
-                { 
-                    Console.WriteLine(e.Message);
-                
-                }          
+            else 
+            {
+                throw new DivideByZeroException();
+            }
 
         }
 
