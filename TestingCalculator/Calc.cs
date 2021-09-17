@@ -1,29 +1,14 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Text;
 
 namespace TestingCalculator
 {
     class Calc
     {
-        private decimal nr1;
-        public decimal nr2;
-        public decimal[] numberArray;
 
-
-
-        public Calc(decimal nr1, decimal nr2)
+        /*public Calc()
         {
-            this.nr1 = nr1;
-            this.nr2 = nr2;
-        }
-
-        public Calc(decimal[] numberArray)
-        {
-            this.numberArray = numberArray;
-
-        }
-
+ 
+        }*/
 
         public decimal Addition(decimal nr1, decimal nr2)
         {
@@ -58,28 +43,27 @@ namespace TestingCalculator
             }
             return dif;
         }
-        public decimal Multiplication()
+        public decimal Multiplication(decimal nr1, decimal nr2)
         {
             decimal prod = nr1 * nr2;
             return prod;
         }
 
-        public decimal Division()
+        public decimal Division(decimal nr1, decimal nr2)
         {
-
+            
             decimal quote;
-
-
+            
             if (nr2 != 0)
             {
                 quote = nr1 / nr2;
                 return quote;
             }
 
-            else 
+            else
             {
                 throw new DivideByZeroException();
-            }
+            }       
 
         }
 
