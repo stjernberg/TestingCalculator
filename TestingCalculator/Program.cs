@@ -13,7 +13,7 @@ namespace TestingCalculator
             {
                 try
                 {
-                    Console.WriteLine("Do you want to calculate with 2 (type 2) or 4 (type 4) numbers press 0 to exit.");
+                    Console.WriteLine("Do you want to calculate with 2 (type 2) or 5 (type 5) numbers press 0 to exit.");
                     int option = int.Parse(Console.ReadLine());
 
                     switch (option)
@@ -21,8 +21,8 @@ namespace TestingCalculator
                         case 2:
                             CalculateTwoNumbers();
                             break;
-                        case 4:
-                            CalculateFourNumbers();
+                        case 5:
+                            CalculateFiveNumbers();
                             break;
                         case 0:
                             keepCalculating = false;
@@ -30,7 +30,7 @@ namespace TestingCalculator
                             break;
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Choose option 2, 4 or e!");
+                            Console.WriteLine("Choose option 2, 5 or e!");
                             break;
                     }
 
@@ -85,7 +85,7 @@ namespace TestingCalculator
             }
         }
 
-        static void CalculateFourNumbers()
+        static void CalculateFiveNumbers()
         {
             Console.WriteLine("Enter five numbers");
 
@@ -108,7 +108,7 @@ namespace TestingCalculator
                 case '+':
                     Console.WriteLine("The answer is " + calculationArray.Addition(numberArray));
                     break;
-                                default:
+                default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("That is not a valid option");
                     break;

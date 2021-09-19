@@ -2,13 +2,13 @@
 
 namespace TestingCalculator
 {
-    class Calc
+    public class Calc
     {
-
-        /*public Calc()
+        
+       public Calc()
         {
  
-        }*/
+        }
 
         public decimal Addition(decimal nr1, decimal nr2)
         {
@@ -34,10 +34,9 @@ namespace TestingCalculator
 
         public decimal Subtraction(decimal[] numberArray)
         {
+            decimal dif = numberArray[0];
 
-            decimal dif = 0;
-
-            for (int i = 0; i < numberArray.Length; i++)
+            for (int i = 1; i < numberArray.Length; i++)
             {
                 dif -= numberArray[i];
             }
