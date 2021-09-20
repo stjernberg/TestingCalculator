@@ -50,20 +50,8 @@ namespace TestingCalculator
 
         public decimal Division(decimal nr1, decimal nr2)
         {
-            
-            decimal quote;
-            
-            if (nr2 != 0)
-            {
-                quote = nr1 / nr2;
-                return quote;
-            }
-
-            else
-            {
-                throw new DivideByZeroException();
-            }       
-
+            decimal quote = nr1 / nr2;
+            return quote;
         }
 
 

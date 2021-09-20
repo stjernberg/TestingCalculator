@@ -19,22 +19,35 @@ namespace TestingCalculator.Tests
             Assert.Equal(expected, result);
         }
 
-       
-        [Theory]
-        [InlineData( 8, 2.5, 1, -5, -1.75, 4.75 )]
-        [InlineData(10, -8, 2, 1.5, -5.25, 0.25 )]
-        [InlineData(6.45, -7.5, 4, -1.5, 5, 6.45 )]
 
-        public void AdditionArrayTest( decimal num1, decimal num2, decimal num3, decimal num4, decimal num5, decimal expected )
-        {                       
+        [Theory]
+        [InlineData(8, 2.5, 1, -5, -1.75, 4.75)]
+        [InlineData(10, -8, 2, 1.5, -5.25, 0.25)]
+        [InlineData(6.45, -7.5, 4, -1.5, 5, 6.45)]
+
+        public void AdditionArrayTest(decimal num1, decimal num2, decimal num3, decimal num4, decimal num5, decimal expected)
+        {
             Calc testAdditionArray = new Calc();
             decimal[] numberArray = { num1, num2, num3, num4, num5 };
-            decimal result= testAdditionArray.Addition(numberArray);
-            Assert.Equal(expected, result);           
+            decimal result = testAdditionArray.Addition(numberArray);
+            Assert.Equal(expected, result);
         }
 
         [Theory]
-        [InlineData(-4, -8.6, 4.6 )]
+        [InlineData(-7, 6, 5.5, 8.25, -5, -21.75)]
+        [InlineData(10, 4.65, -7.5, 11, -72, 73.85)]
+        [InlineData(56.73, -49.5, 8, 2.4, -3, 98.83)]
+        
+        public void SubtractionArrayTest(decimal num1, decimal num2, decimal num3, decimal num4, decimal num5, decimal expected)
+        {
+            Calc testSubtractionArray = new Calc();
+            decimal[] numberArray = { num1, num2, num3, num4, num5 };
+            decimal result = testSubtractionArray.Subtraction(numberArray);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(-4, -8.6, 4.6)]
         [InlineData(14, 2.30, 11.7)]
         [InlineData(-0.25, -4.70, 4.45)]
         public void SubtractionTest(decimal num1, decimal num2, decimal expected)
@@ -54,8 +67,8 @@ namespace TestingCalculator.Tests
             Calc testMultiplication = new Calc();
             decimal result = testMultiplication.Multiplication(num1, num2);
             Assert.Equal(expected, result);
-        } 
-        
+        }
+
         [Theory]
         [InlineData(5, -4, -20)]
         [InlineData(2.25, 5.62, 12.645)]

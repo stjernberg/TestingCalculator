@@ -8,7 +8,7 @@ namespace TestingCalculator
         {
 
             bool keepCalculating = true;
-           
+
             while (keepCalculating)
             {
                 try
@@ -39,7 +39,7 @@ namespace TestingCalculator
                     Console.ReadKey();
                     Console.Clear();
 
-                }//try
+                }
 
                 catch (FormatException)
                 {
@@ -47,43 +47,78 @@ namespace TestingCalculator
                     Console.WriteLine("That is not a valid option");
                     Console.ResetColor();
                 }
-            }//while
-          
+            }
+
 
         }//main
 
         static void CalculateTwoNumbers()
         {
-            Console.WriteLine("Enter your first number");
-            decimal num1 = AskUserForNumber();
-            Console.WriteLine("Enter your second number");
-            decimal num2 = AskUserForNumber();
-            Calc calculation = new Calc();
 
-
-            char chooseMethod = MenuSelection();
-
-            switch (chooseMethod)
+            bool isZero = true;
+            while (isZero)
             {
-                case '-':
-                    Console.WriteLine("The answer is " + calculation.Subtraction(num1, num2));
-                    break;
-                case '+':
-                    Console.WriteLine("The answer is " + calculation.Addition(num1, num2));
-                    break;
-                case '/':
-                    Console.WriteLine("The answer is " + calculation.Division(num1, num2));
-                    break;
-                case '*':
-                    Console.WriteLine("The answer is " + calculation.Multiplication(num1, num2));
-                    break;
 
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("That is not a valid option");
-                    break;
+                Console.WriteLine("Enter your first number");
+                decimal num1 = AskUserForNumber();
+                Console.WriteLine("Enter your second number");
+                decimal num2 = AskUserForNumber();
+                Calc calculation = new Calc();
+
+                bool correctChoice = false;
+                while (!correctChoice)
+                {
+                    try
+                    {
+                        char chooseMethod = MenuSelection();
+
+                        switch (chooseMethod)
+                        {
+                            case '-':
+                                Console.WriteLine("The answer is " + calculation.Subtraction(num1, num2));
+                                isZero = false;
+                                correctChoice = true;
+                                break;
+                            case '+':
+                                Console.WriteLine("The answer is " + calculation.Addition(num1, num2));
+                                correctChoice = true;
+                                break;
+                            case '/':
+
+                                if (num2 != 0)
+                                {
+                                    Console.WriteLine("The answer is " + calculation.Division(num1, num2));
+                                    isZero = false;
+                                    correctChoice = true;
+                                }
+
+                                else
+                                {
+                                    correctChoice = true;
+                                    throw new DivideByZeroException("You can't divide by zero!");                                   
+                                }
+                                break;
+                            case '*':
+                                Console.WriteLine("The answer is " + calculation.Multiplication(num1, num2));
+                                isZero = false;
+                                correctChoice = true;
+                                break;
+
+                            default:
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("That is not a valid option");
+                                Console.ResetColor();
+                                break;
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
             }
-        }
+        }//CalculateTwoNumbers
 
         static void CalculateFiveNumbers()
         {
@@ -98,67 +133,82 @@ namespace TestingCalculator
 
             Calc calculationArray = new Calc();
 
-            char chooseMethod = MenuSelectionArray();
-
-            switch (chooseMethod)
+            bool correctChoice = false;
+            while (!correctChoice)
             {
-                case '-':
-                    Console.WriteLine("The answer is " + calculationArray.Subtraction(numberArray));
-                    break;
-                case '+':
-                    Console.WriteLine("The answer is " + calculationArray.Addition(numberArray));
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("That is not a valid option");
-                    break;
-
-            }
-        }
-            static char MenuSelection()
-            {
-                Console.WriteLine("Enter a calculation method or press e to exit:");
-                Console.WriteLine("- for Subtraction");
-                Console.WriteLine("+ for Addition");
-                Console.WriteLine("* for Multiplication");
-                Console.WriteLine("/ for Division");
-
-                char calculationChoice = char.Parse(Console.ReadLine());
-                return calculationChoice;
-            }
-
-            static char MenuSelectionArray()
-            {
-                Console.WriteLine("Enter a calculation method or press e to exit:");
-                Console.WriteLine("- for Subtraction");
-                Console.WriteLine("+ for Addition");
-
-                char calculationChoice = char.Parse(Console.ReadLine());
-                return calculationChoice;
-            }
-
-
-            static decimal AskUserForNumber()
-            {
-                decimal number;
-
-                while (true)
+                try
                 {
-                    try
+                    char chooseMethod = MenuSelectionArray();
+
+                    switch (chooseMethod)
                     {
-                        number = decimal.Parse(Console.ReadLine());
-                        return number;
-
+                        case '-':
+                            Console.WriteLine("The answer is " + calculationArray.Subtraction(numberArray));
+                            correctChoice = true;
+                            break;
+                        case '+':
+                            Console.WriteLine("The answer is " + calculationArray.Addition(numberArray));
+                            correctChoice = true;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("That is not a valid option");
+                            Console.ResetColor();
+                            break;
                     }
-                    catch (FormatException)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("You must type a number, please try again!");
-                        Console.ResetColor();
-                    }
-                }//while
+
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }//CalculateFiveNumbers()
+        static char MenuSelection()
+        {
+            Console.WriteLine("Enter a calculation method or press e to exit:");
+            Console.WriteLine("- for Subtraction");
+            Console.WriteLine("+ for Addition");
+            Console.WriteLine("* for Multiplication");
+            Console.WriteLine("/ for Division");
+
+            char calculationChoice = char.Parse(Console.ReadLine());
+            return calculationChoice;
+        }//MenuSelection
+
+        static char MenuSelectionArray()
+        {
+            Console.WriteLine("Enter a calculation method or press e to exit:");
+            Console.WriteLine("- for Subtraction");
+            Console.WriteLine("+ for Addition");
+
+            char calculationChoice = char.Parse(Console.ReadLine());
+            return calculationChoice;
+        }//MenuSelectionArray
 
 
-            }//AskUserForNumber
-        }//class
-    }//namespace
+        static decimal AskUserForNumber()
+        {
+            decimal number;
+
+            while (true)
+            {
+                try
+                {
+                    number = decimal.Parse(Console.ReadLine());
+                    return number;
+
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("You must type a number, please try again!");
+                    Console.ResetColor();
+                }
+            }
+
+
+        }//AskUserForNumber
+    }//class
+}//namespace
